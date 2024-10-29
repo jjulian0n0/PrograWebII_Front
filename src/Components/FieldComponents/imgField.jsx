@@ -40,7 +40,7 @@ function ImageUploader2 (props){
         <img src={props.imagePreview} alt="Preview" style={{ width: '200px', height: 'auto' }} />
       </div>
     )}
-      <input type="file" accept="image/*" onChange={handleImageChange} />
+      <input type="file" accept="image/jpeg, image/png, image/jpg" onChange={handleImageChange} />
       
     </div>
   );
