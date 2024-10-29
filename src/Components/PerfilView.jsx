@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import BtnCom from './FieldComponents/buttonCom'
 import InputField from './FieldComponents/InputField';
 
@@ -9,12 +9,49 @@ import InputField from './FieldComponents/InputField';
 
 function PerfilView(props) {
    
+    const userId =  localStorage.getItem("userId"); //parseInt("userId", 10);
+
     
    
-  const [user, setUser] = useState("")
-  const [password, setPassword] = useState("")
+    const [user, setUser] = useState("")
+    const [email, setEmail] = useState("")
+    const [foto, setFoto] = useState("")
    
+        const perfilData = async () => {
+          try {
+            const res = await fetch(`http://localhost:3000/login/perfil/${userId}`, {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            });
+      
+            if (res.ok) {
 
+              const data = await res.json(); // Convertir la respuesta a JSON
+              //console.log("Respuesta completa:", data); // Verifica toda la respuesta
+
+              const { userProfile } = data;
+
+
+              //alert(userProfile.id);
+              
+
+            } else {
+              console.error('Error al obtener datos de user:', res.statusText);
+            }
+
+          } catch (error) {
+            console.error('Error en la solicitud:', error);
+          } finally {
+            // setLoading(false); Indica que la carga ha terminado
+          }
+        };
+
+
+        useEffect(() => {
+          perfilData(); // useEffect llama
+        }, []);
 
 
 
@@ -24,8 +61,8 @@ function PerfilView(props) {
    return ( 
    <div className='card'>
 
-    <h1>Perfil view</h1>
-    <h2>Nombre de perfil</h2>
+    <h1>{user}</h1>
+    <h2>{userId}</h2>
 
   </div>
   )

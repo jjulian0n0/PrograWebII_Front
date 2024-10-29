@@ -16,7 +16,7 @@ function VerAllVideos() {
       if (res.ok) {
         const responseData = await res.json(); // Convertir la respuesta a JSON
         
-        // Suponiendo que responseData es un arreglo de videos
+        
         const videosData = responseData.map(video => ({
           nombre: video.nombre,
           desc: video.desc,
