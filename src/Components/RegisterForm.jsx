@@ -31,6 +31,7 @@ function LoginForm(props) {
             return
           }
 
+        /* 
 
       const data = {
         nombre: user,
@@ -44,7 +45,21 @@ function LoginForm(props) {
           'content-Type': 'application/json'
         },
         body: JSON.stringify(data)
-      })
+      })*/
+
+        const formData = new FormData();
+        formData.append('nombre', user);
+        formData.append('email', email);
+        formData.append('contrasena', password);
+        
+        if (imagePreview) {
+          formData.append('foto', imageFile);
+        }
+      
+        const res = await fetch('http://localhost:3000/user', {
+          method: 'POST',
+          body: formData,
+        });
 
       if(res.ok){
         alert("Nuevo usuario registrado")
@@ -62,12 +77,13 @@ function LoginForm(props) {
   const [email, setEmail] = useState("")
 
   const [imagePreview, setImagePreview] = useState(null);
+  const [imageFile, setImageFile] = useState(null); //Para que se obtenga un URL de la imagen
   // const [email, setEmail] = useState("") RUTA FOTOGRAFIA
    
    return ( 
    <div className="card2">
 
-    <ImgField setImagePreview = {setImagePreview} imagePreview = {imagePreview}></ImgField>
+    <ImgField setImagePreview = {setImagePreview} setImageFile = {setImageFile} imagePreview = {imagePreview}></ImgField>
     <br/>
 
     <InputField setText={setEmail} label="Correo"></InputField>

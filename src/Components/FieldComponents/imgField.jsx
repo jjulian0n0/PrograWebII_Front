@@ -29,6 +29,7 @@ function ImageUploader2 (props){
     const file = event.target.files[0];
     if (file) {
       props.setImagePreview(URL.createObjectURL(file)); //Crea una Url 
+      props.setImageFile(file);
     }
   };
 
