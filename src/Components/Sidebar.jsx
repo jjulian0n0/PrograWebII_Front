@@ -1,6 +1,6 @@
 
 import React from 'react';
-import '../Sidebar.css'; // Estilos CSS para la barra lateral
+import './CSS/Sidebar.css'; // Estilos CSS para la barra lateral
 import AComponent from './FieldComponents/AComponent'
 import { Link } from 'react-router-dom';
 

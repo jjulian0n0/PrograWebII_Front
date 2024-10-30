@@ -11,9 +11,9 @@ import VideoAll from './Components/AllVideosView'
 import VideoOne from './Components/VideoComentarios'
 
 
-import './Container.css' 
+import './Components/CSS/Container.css' 
 
-import './App.css'
+import './Components/CSS/App.css'
 
 function App() {
 
@@ -42,7 +42,7 @@ function App() {
               </div>
 ¿
               <VideoOne/>
-              
+
               </>
             );
           } else if (loginInt === 1) {
