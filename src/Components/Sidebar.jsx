@@ -25,6 +25,9 @@ function Sidebar (props){
         <Link to="/principal">Todos los videos</Link>
         </li>
         <li>
+        <Link to="/videoOne">UnVideo(ocultar)</Link>
+        </li>
+        <li>
         <AComponent setInt = {props.setLoginInt} numero = {0} texto = "Cerrar Sesion"/>
 
         </li>
@@ -35,3 +38,36 @@ function Sidebar (props){
 };
 
 export default Sidebar;
+
+{/* Anterior SideBar (que la fuerza te acompañe)
+
+  return (
+    <div className="sidebar">
+      <h2>Menú</h2>
+      <ul>
+
+        <li>
+        <AComponent setInt = {props.setNavInt} numero = {1} texto = "Mi perfil">
+
+          </AComponent>
+        </li>
+
+        <li>
+        <AComponent setInt = {props.setNavInt} numero = {2} texto = "Subir Video">
+
+          </AComponent>
+        </li>
+
+        <li>
+        <AComponent setInt = {props.setNavInt} numero = {3} texto = "Suscripciones">
+
+          </AComponent>
+        </li>
+
+      </ul>
+    </div>
+  );
+  
+  
+  
+  */}

@@ -8,6 +8,7 @@ import Sidebar from './Components/Sidebar'
 import Perfil from './Components/PerfilView'
 import VideoForm from './Components/SubirVideoForm'
 import VideoAll from './Components/AllVideosView'
+import VideoOne from './Components/VideoComentarios'
 
 
 import './Container.css' 
@@ -32,10 +33,17 @@ function App() {
             localStorage.removeItem('userId');
 
             return (
+              <>
               <div className='card'>
                 <h1>Iniciar Sesión</h1>
                 <LoginForm setLoginInt={setLoginInt} setNavBool={setNavBool} />
+
+
               </div>
+¿
+              <VideoOne/>
+              
+              </>
             );
           } else if (loginInt === 1) {
             return (
@@ -55,10 +63,13 @@ function App() {
                  <Route path="/perfil" element={<Perfil />} />
                  <Route path="/videoForm" element={<VideoForm />} />
                  <Route path="/principal" element={<VideoAll />} />
+                 <Route path="/videoOne" element={<VideoOne />} />
                 </Routes>
               </>
             );
           }
+
+
     })()}
 
       

@@ -29,10 +29,12 @@ function PerfilView(props) {
             if (res.ok) {
 
               const data = await res.json(); // Convertir la respuesta a JSON
-              //console.log("Respuesta completa:", data); // Verifica toda la respuesta
+              console.log("Respuesta completa:", data); // Verifica toda la respuesta
 
               const { userProfile } = data;
-
+              setUser(userProfile.nombre);
+              setEmail(userProfile.email);
+              setFoto(`http://localhost:3000/${userProfile.foto.replace(/\\/g, '/')}`); // Pasar de \\ a / para mostrar en el perfil
 
               //alert(userProfile.id);
               
@@ -62,7 +64,10 @@ function PerfilView(props) {
    <div className='card'>
 
     <h1>{user}</h1>
-    <h2>{userId}</h2>
+    <h1>{email}</h1>
+    {/* <h1>{foto}</h1> */}
+
+    <img src={`${foto}`} alt="Foto de perfil" style={{ width: '200px', height: 'auto' }} />
 
   </div>
   )
