@@ -26,6 +26,7 @@ Nos falta:
 # Bitacora equipo:
 
 30/10/24 Julian: Muestra de la informacione en PerfilView
+9:44 Subida de video
 
 
 # -- Descripcion del proyecto: -- 
