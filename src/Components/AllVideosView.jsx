@@ -6,7 +6,7 @@ function VerAllVideos() {
 
   const videosHandle = async () => {
     try {
-      const res = await fetch('http://localhost:3000/video/busqueda', {
+      const res = await fetch('http://localhost:3000/video/busqueda?name=', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -20,7 +20,7 @@ function VerAllVideos() {
         const videosData = responseData.map(video => ({
           nombre: video.nombre,
           desc: video.desc,
-          fAlta: video.fAlta, // Asumiendo que 'fAlta' es el campo correspondiente
+          fAlta: video.fAlta, 
         }));
 
         setVideos(videosData); // Actualizar el estado con los videos obtenidos

@@ -57,6 +57,8 @@ function PerfilView(props) {
 
 
         const handleError = () => {
+    console.log("Error: Ruta incorrecta de foto, mostrando foto default")
+
           setFoto('./foto3.png'); // Subir una imagen por defecto (distinta)
         };
 
@@ -65,11 +67,23 @@ function PerfilView(props) {
    return ( 
    <div className='card'>
 
-    <h1>{user}</h1>
+    <div className='row'>
+
+    <div className='col'>
+    <img src={`${foto}`}  alt="Foto de perfil" style={{ width: '200px', height: 'auto' } } onError={handleError}  />
+
+
+    </div>
+    <div className='col'>
+      <h1>{user}</h1>
     <h1>{email}</h1>
+    </div>
+
+    </div>
+
+    
     {/* <h1>{foto}</h1> */}
 
-    <img src={`${foto}`}  alt="Foto de perfil" style={{ width: '200px', height: 'auto' } } onError={handleError}  />
 
   </div>
   )

@@ -8,7 +8,7 @@ import Sidebar from './Components/Sidebar'
 import Perfil from './Components/PerfilView'
 import VideoForm from './Components/SubirVideoForm'
 import VideoAll from './Components/AllVideosView'
-import VideoOne from './Components/VideoComentarios'
+import VideoOne from './Components/video21'
 
 import './Components/CSS/App.css'
 import './Components/CSS/Container.css' 

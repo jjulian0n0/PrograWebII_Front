@@ -12,9 +12,14 @@ Tenemos:
     Login
     Registro de usuario
     Ver información de usuario
+    Subir video con Multer // Julian
+
 
 Nos falta:
-    Subir video con Multer // Julian
+
+    *Ya muestra los datos de los videos en la principal, ahora tienen que mostrar los videos y arreglar el formato de la fecha
+    *
+    
     Buscar videos
     Hacer comentarios
     Mostrar comentarios
