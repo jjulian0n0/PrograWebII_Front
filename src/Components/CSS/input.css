@@ -1,0 +1,11 @@
+.inputA{
+    border-radius: 15px;
+    background-color: #a3a3a3;
+    color:#000;
+    border: 0;
+  }
+  
+  .inputA:focus{
+    border: 0.5px;
+    border-color: rgb(54, 54, 54);
+  }

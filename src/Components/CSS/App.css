@@ -41,17 +41,14 @@
   color: #273846;
 }
 
+    .cardLogin{
+      
+      margin-left: 30%;
+      margin-right: 30%;
+    }
+
 .read-the-docs {
   color: #888;
 }
 
-input{
-  border-radius: 15px;
-  background-color: #a3a3a3;
-  border: 0;
-}
 
-input:focus{
-  border: 1px;
-  border-color: rgb(54, 54, 54);
-}

@@ -1,4 +1,4 @@
-/* Containers */
+/* Parte del Bootstrap para los containers, rows y col.  */
 .container {
     width: 100%;
     padding-right: 15px;
@@ -6,6 +6,11 @@
     margin-right: auto;
     margin-left: auto;
   }
+
+  .img-fluid {
+    max-width: 100%;
+    height: auto;
+}
   
   @media (min-width: 576px) {
     .container {

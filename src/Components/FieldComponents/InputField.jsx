@@ -1,4 +1,6 @@
 
+import '../CSS/input.css' 
+
 
 
 function InputField(props){
@@ -6,7 +8,7 @@ function InputField(props){
     return(
         <div>
             <label>{props.label}: </label>
-            <input type={props.type} 
+            <input className='inputA' type={props.type} 
             onChange={(e) => {
 
                 if (props.setText) {

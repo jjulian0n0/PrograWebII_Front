@@ -1,6 +1,8 @@
 import { useState } from 'react'
 
+import './CSS/Container.css'
 import './CSS/VideoComentarios.css'
+
 
 import InputField from './FieldComponents/InputField';
 import VideoField from './FieldComponents/videoField'
@@ -9,74 +11,72 @@ import VideoField from './FieldComponents/videoField'
 
 
 
-function VideoForm(props) {
-    {/* 
-        const addVideoHandler = async () => {
-
-          var aValue = localStorage.getItem('userId');
-          var idUserLS = 0;
-
-          if(!title || !desc || !videoP ){
-
-            alert("Favor de ingresar los datos")
-
-            return}
-
-            if(!aValue){
-            alert("No a ingresado a su cuenta")
-            return
-              
-            }else{
-              idUserLS = parseInt(aValue)
-            }
-
-          //Agregar validaciones para email y contraseña
-
-          
-
-
-            const data = {
-              nombre : title,
-              desc : desc,
-              ruta : videoP,
-              userId : idUserLS 
-
-            }
-
-            const res = await fetch('http://localhost:3000/video',{
-              method: 'POST',
-              headers:{
-                'content-Type': 'application/json'
-              },
-              body: JSON.stringify(data)
-            })
-
-          if(res.ok){
-            alert("Nuevo video registrado")
-
-            
-
-          }else{
-            alert("Error al crear video")
-          }
-
-        }
-    */}   
+function VideoOne(props) {
+      
     
-  const [videoP, setVideoPreview] = useState(null);
-  const [title, setTitle] = useState("")
-  const [desc, setDesc] = useState("")
+  
 
 
 
   
    return ( 
-    <div className='cardComent'>
-      Aaa
+    <div className='videoVista'> 
+      <div>
+          <h1>Titulo del video</h1>
+            <video src="video2.mp4" width="1280" height="640" controls></video> {/* Entramos desde public localhost/video*/}
+            <h4>10/10/2024</h4>
+            <h3>Acá insertamos la descripcion del video</h3>
+      </div>
 
+          <div className='cardComent'>
+            <h2>Comentarios</h2>
+
+          <div className='row'>
+
+              <div className='col-2 colFoto'>
+                  <img src="foto3.png" className='img-fluid pfPx-Comentario' ></img>
+              </div>
+              <div className='col comentCol'>
+                <input type='text' className='coment' placeholder="Agrega tu comentario"></input>
+              </div>
+
+
+            </div>
+
+            <hr/>
+
+            <div className='row'>
+
+            <div className='col-2 colFoto'>
+                <img src="foto3.png" className='img-fluid pfPx-Comentario' ></img>
+            </div>
+            <div className='col colComentData'>
+              <h4>Alguien</h4>
+              <p>Este es un comentario que alguien hizo lol</p>
+            </div>
+
+
+            </div>
+            
+            <hr/>
+
+            <div className='row'>
+
+            <div className='col-2 colFoto'>
+                <img src="foto3.png" className='img-fluid pfPx-Comentario' ></img>
+            </div>
+            <div className='col colComentData'>
+              <h4>Alguien</h4>
+              <p>Este es un comentario que alguien hizo lol</p>
+            </div>
+
+
+            </div>
+
+          </div>
     </div>
   )
     
 }
 
-export default VideoForm
+export default VideoOne

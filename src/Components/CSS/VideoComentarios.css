@@ -1,6 +1,100 @@
 
+.videoVista{
+    color: #181818;
+
+    margin-left: 200px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.videoVista video {
+    width: 100%;
+    max-width: 100%;
+    height: 50%;
+
+  }
 
 .cardComent{
+    width: 88%;
 
-    background-color: antiquewhite;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: rgb(255, 255, 255);
+    padding-bottom: 20px;
+}
+
+.comentCol{   
+
+    margin: 10px 20px;
+    padding: 0 5px;
+
+    font-size: large;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+
+}
+
+.coment{
+    border: 0;
+    background-color: #a3a3a3;
+    width: 75%;
+    height: 100%;
+    font-size: 1.2em;
+
+    
+}
+
+::placeholder {
+    color: rgba(0, 0, 0, 0.425);
+    font-size: 1.2em;
+  }
+  
+
+hr{
+    width: 85%;
+}
+
+.colFoto{ /* Columna de la foto */
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.pfPx-Comentario{ /* Foto */
+    border-radius: 50%;
+    margin: 10px 20px;
+    width: 30%;
+    margin-right: 0;
+
+}
+
+.colComentData{ /* Comentario */
+    margin: auto 0px;
+    font-size: large;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+}
+
+video{
+    background-color: #0000009f;
+}
+
+
+h4{
+    margin: 0px;font-size: 1.2em;
+}
+p{
+    margin: 0;font-size: 1.2em;
+}
+
+hr{
+    width: 85%;
 }

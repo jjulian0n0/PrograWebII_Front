@@ -13,7 +13,7 @@ function VideoForm(props) {
       var aValue = localStorage.getItem('userId');
       var idUserLS = 0;
 
-      if(!title || !desc || !videoP ){
+      if(!title || !desc || !videoFile ){
 
         alert("Favor de ingresar los datos")
 
@@ -31,7 +31,7 @@ function VideoForm(props) {
 
       
 
-
+        /* 
         const data = {
           nombre : title,
           desc : desc,
@@ -39,13 +39,24 @@ function VideoForm(props) {
           userId : idUserLS 
 
         }
+        */
+
+        const formData = new FormData();
+        formData.append('nombre', title);
+        formData.append('desc', desc);
+        formData.append('userId', idUserLS);
+
+
+
+
+        if(videoFile){
+          formData.append('ruta', videoFile);
+
+        }
 
         const res = await fetch('http://localhost:3000/video',{
           method: 'POST',
-          headers:{
-            'content-Type': 'application/json'
-          },
-          body: JSON.stringify(data)
+          body: formData
         })
 
       if(res.ok){
@@ -61,6 +72,8 @@ function VideoForm(props) {
    
     
   const [videoP, setVideoPreview] = useState(null);
+  const [videoFile, setVideoFile] = useState(null);
+
   const [title, setTitle] = useState("")
   const [desc, setDesc] = useState("")
 
@@ -68,6 +81,7 @@ function VideoForm(props) {
 
   
    return ( 
+    <>
     <div className='card'>
       <h1>Subir video</h1>
 
@@ -76,8 +90,9 @@ function VideoForm(props) {
           <div className='row'>
             <div className='col'>
 
-              <VideoField setVideoPreview = {setVideoPreview} videoPreview = {videoP}/>
+              <VideoField setVideoFile= {setVideoFile} setVideoPreview = {setVideoPreview} videoPreview = {videoP}/>
                 
+                <h2>{videoFile ? videoFile.name : 'No hay archivo seleccionado'}</h2>
             </div>
             <div className='col'>
 
@@ -91,6 +106,7 @@ function VideoForm(props) {
         </div>
 
       </div>
+      </>
   )
     
 }

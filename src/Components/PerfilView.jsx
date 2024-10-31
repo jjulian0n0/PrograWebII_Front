@@ -56,7 +56,9 @@ function PerfilView(props) {
         }, []);
 
 
-
+        const handleError = () => {
+          setFoto('./foto3.png'); // Subir una imagen por defecto (distinta)
+        };
 
 
   
@@ -67,7 +69,7 @@ function PerfilView(props) {
     <h1>{email}</h1>
     {/* <h1>{foto}</h1> */}
 
-    <img src={`${foto}`} alt="Foto de perfil" style={{ width: '200px', height: 'auto' }} />
+    <img src={`${foto}`}  alt="Foto de perfil" style={{ width: '200px', height: 'auto' } } onError={handleError}  />
 
   </div>
   )

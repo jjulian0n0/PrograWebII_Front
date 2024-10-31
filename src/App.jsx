@@ -10,10 +10,10 @@ import VideoForm from './Components/SubirVideoForm'
 import VideoAll from './Components/AllVideosView'
 import VideoOne from './Components/VideoComentarios'
 
-
+import './Components/CSS/App.css'
 import './Components/CSS/Container.css' 
 
-import './Components/CSS/App.css'
+
 
 function App() {
 
@@ -40,14 +40,12 @@ function App() {
 
 
               </div>
-¿
-              <VideoOne/>
 
               </>
             );
           } else if (loginInt === 1) {
             return (
-              <div className='card'>
+              <div className='card '>
                 <h1>Agregar Usuario</h1>
                 <RegisterForm setLoginInt={setLoginInt} />
               </div>
