@@ -3,7 +3,7 @@ Proyecto de Progra Web 2, parte de Front
 
     Creado por:
     - Jesús Julián Cerda Sandoval
-    -
+    - Ricardo Ponce de León Herrera
     -
     -
 
@@ -20,7 +20,7 @@ Nos falta:
     *Ya muestra los datos de los videos en la principal, ahora tienen que mostrar los videos y arreglar el formato de la fecha
     *
     
-    Buscar videos
+    Buscar videos // Ricardo?
     Hacer comentarios
     Mostrar comentarios
     Playlist // Andrea
@@ -32,6 +32,10 @@ Nos falta:
 
 30/10/24 Julian: Muestra de la informacione en PerfilView
 9:44 Subida de video
+
+06/11/20 - 11:55pm - Ricardo: Logro acceso y actualizacion del Git
+
+
 
 
 # -- Descripcion del proyecto: -- 
