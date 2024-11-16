@@ -61,7 +61,7 @@ function App() {
                  <Route path="/perfil" element={<Perfil />} />
                  <Route path="/videoForm" element={<VideoForm />} />
                  <Route path="/principal" element={<VideoAll />} />
-                 <Route path="/videoOne" element={<VideoOne />} />
+                 <Route path="/videoOne/:id" element={<VideoOne />} />
                 </Routes>
               </>
             );

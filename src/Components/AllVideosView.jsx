@@ -1,4 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import './CSS/VerAllVideos.css';
+
+// Importamos el componente VideoThumbnail desde FieldComponents
+import VideoThumbnail from './FieldComponents/videoThumbnail'; 
+
 
 function VerAllVideos() {
   const [videos, setVideos] = useState([]); // Estado para almacenar videos
@@ -18,9 +24,11 @@ function VerAllVideos() {
         
         
         const videosData = responseData.map(video => ({
+          id: video.id,
           nombre: video.nombre,
           desc: video.desc,
-          fAlta: video.fAlta, 
+          fAlta: video.fAlta,
+          ruta: `http://localhost:3000/${video.ruta.replace(/\\/g, '/')}`, // URL completa del video 
         }));
 
         setVideos(videosData); // Actualizar el estado con los videos obtenidos
@@ -43,14 +51,17 @@ function VerAllVideos() {
   }
 
   return (
-    <div className='card2'>
+    <div className='ver-all-videos'>
       {videos.length > 0 ? (
-        videos.map((video, index) => (
-          <div key={index}>
-            <h1>{video.nombre}</h1> {/* Título del video */}
-            <h2>{video.desc}</h2> {/* Descripción del video */}
-            <p>Fecha de alta: {video.fAlta}</p> {/* Fecha de alta si lo deseas */}
-          </div>
+        videos.map((video) => (
+          <Link to={`/videoOne/${video.id}`} key={video.id} className="ver-all-videos-link">
+            <div className="ver-all-videos-card">             
+              <VideoThumbnail videoSrc={video.ruta} /> {/* Mostrar el thumbnail del video */}
+              <h1>{video.nombre} (ID: {video.id})</h1> {/* Título del video con el ID */}
+              <h2>{video.desc}</h2> {/* Descripción del video */}
+              <p>Fecha de alta: {video.fAlta}</p> {/* Fecha de alta */}
+            </div>
+          </Link>
         ))
       ) : (
         <p>No se encontraron videos.</p> // Mensaje si no hay videos

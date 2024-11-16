@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom';
 
 import './CSS/Container.css'
 import './CSS/VideoComentarios.css'
+import './CSS/VerAllVideos.css';
 
 
 import InputField from './FieldComponents/InputField';
@@ -9,54 +11,46 @@ import VideoField from './FieldComponents/videoField'
 
 
 
-
-
 function VideoOne(props) {
-
-  const [tit, setTit] = useState("A")
-  const [desc, setDesc] = useState("A")
-  const [vid, setVid] = useState("A")
-
+  const { id } = useParams(); // Sacar el ID del video de la ruta
+  const [tit, setTit] = useState("A");
+  const [desc, setDesc] = useState("A");
+  const [vid, setVid] = useState("A");
+  const [date, setDate] = useState("A"); // Fecha del video
       
-    
+ 
   const videoHandle = async () => {
-    
+    try {
+      const res = await fetch(`http://localhost:3000/video/${id}`, {
+        method: 'GET',
+        headers: {
+          'content-Type': 'application/json',
+        },
+      });
 
-    const id = 22 //conseguir desde el local
+      if (res.ok) {
+        const responseData = await res.json();
+        console.log(responseData);
 
-    const res = await fetch(`http://localhost:3000/video/${id}`,{
-      method: 'GET',
-      headers:{
-        'content-Type': 'application/json'
+        setTit(responseData.nombre);
+        setDesc(responseData.desc);
+        setVid(`http://localhost:3000/${responseData.ruta.replace(/\\/g, '/')}`);
+        setDate(responseData.fAlta);
+      } else {
+        console.log("No se encontró el video");
       }
-    })
-
-    if(res.ok){
-
-      const responseData = await res.json(); 
-      console.log(responseData);
-
-      setTit(responseData.nombre)
-      setDesc(responseData.desc)
-      setVid(`http://localhost:3000/${responseData.ruta.replace(/\\/g, '/')}`)
-      
-
-      
-
-    }else{
-
-      console.log("No se encontró el video")
-
+    } catch (error) {
+      console.error("Error fetching video:", error);
     }
+  };
 
-  }
-
-
+  //FUNCION TEMPORAL DE SUBSCRIPCION
+  const handleSubscribe = () => {
+    alert("Ahorita no hace nada");
+  };
   useEffect(() => {
-    console.log("Error: Ruta incorrecta, mostrando video default")
-
-    videoHandle(); // useEffect llama
-  }, []);
+    videoHandle();
+  }, [id]);
 
   const handleError = () => {
     setVid('./video2.mp4'); // Subir una imagen por defecto (distinta)
@@ -64,12 +58,22 @@ function VideoOne(props) {
   
    return ( 
     <div className='videoVista'> 
-      <div>
-          <h1>{tit}</h1>
-            <video src={`${vid}`} width="1280" height="640" controls onError={handleError}></video> {/* Entramos desde public localhost/video*/}
-            <h4>Fecha</h4>
-            <h3>{desc}</h3>
+      <div className="video-container">         
+            <video src={`${vid}`} width="100%"  height="auto" controls onError={handleError}></video> {/* Entramos desde public localhost/video*/}
+            <h1 className="video-title">{tit}</h1>
+            <div className="video-header">
+              <h2 className="channel-title">NOMBRE DEL CANAL</h2>
+              <button className="subscribe-button" onClick={handleSubscribe}>
+                Suscribirse
+              </button>
+            </div>
+            <div className="video-desc ">
+              <h4>Fecha: {date}</h4>
+              <p>{desc}</p>
+            </div>
       </div>
+      
+{/* DE AQUI PARA ABAJO SON COMENTARIOS*/}
 
           <div className='cardComent'>
             <h2>Comentarios</h2>

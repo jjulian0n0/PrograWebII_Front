@@ -34,7 +34,15 @@ Nos falta:
 9:44 Subida de video
 
 06/11/20 - 11:55pm - Ricardo: Logro acceso y actualizacion del Git
-
+06/16/20 - 8:30am  - Ricardo: 
+    - Creacion del CSS de VerAllVideos (tambien afecta video21)
+    - creacion de el JSX de videoThumbnail para hacer los thumbnails de los videos
+    - Modificaciones a AllVideosView para que se vieran todos los videos en la base de datos (no tiene funcion de busqueda todavia)
+    - Modificacion de Sidebar.jsx para que UnVideo(ocultar) te envie directo al primer video de tu base de datos
+    - Modificacion de App.jsx solamente a la ruta de Video para que te mande a un video con un ID especifico
+    - Modificacon de Video21 para que te muestre de manera apropiada un video especifico al que le hagas click en Todos los Videos
+    - El nuevo CSS de VerAllVideos tambien lo use para modificar el formato del Titulo, Fecha y Descripcion
+    - Agreque un boton de Subscripcion que todavia no hace nada
 
 
 
