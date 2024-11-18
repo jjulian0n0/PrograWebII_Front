@@ -17,6 +17,7 @@ function VideoOne(props) {
   const [desc, setDesc] = useState("A");
   const [vid, setVid] = useState("A");
   const [date, setDate] = useState("A"); // Fecha del video
+  const [canal, setCanal] = useState("A"); 
 
   const [comentarios, setComentarios] = useState([]);
   const [comentarioTexto, setComentarioTexto] = useState("");
@@ -38,6 +39,7 @@ function VideoOne(props) {
         setDesc(responseData.desc);
         setVid(`http://localhost:3000/${responseData.ruta.replace(/\\/g, '/')}`);
         setDate(responseData.fAlta);
+        setCanal(responseData.user.nombre)
       } else {
         console.log("No se encontró el video");
       }
@@ -134,7 +136,7 @@ function VideoOne(props) {
             <video src={`${vid}`} width="100%"  height="auto" controls onError={handleError}></video> {/* Entramos desde public localhost/video*/}
             <h1 className="video-title">{tit}</h1>
             <div className="video-header">
-              <h2 className="channel-title">NOMBRE DEL CANAL</h2>
+              <h2 className="channel-title">Subido por: {canal}</h2>
               <button className="subscribe-button" onClick={handleSubscribe} > {/* key={comentario.id} Entramos desde public localhost/video*/}
                 Suscribirse
               </button>
