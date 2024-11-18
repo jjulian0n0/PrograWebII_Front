@@ -19,6 +19,11 @@ function VideoOne(props) {
   const [date, setDate] = useState("A"); // Fecha del video
   const [canal, setCanal] = useState("A"); 
 
+  const [canalId, setCanalId] = useState(0);
+  const [estaSuscrito, setEstaSuscrito] = useState(); //Booleano para saber el estado de la suscripcion a este canal
+  const [botonSuscribirse, setBotonSuscribirse] = useState(""); //Solo cambia el texto del boton de 'Suscribirse' a 'Suscrito'
+  const [totalsus, setTotalsus] = useState(0); //Total de suscriptores del canal
+
   const [comentarios, setComentarios] = useState([]);
   const [comentarioTexto, setComentarioTexto] = useState("");
  
@@ -39,7 +44,8 @@ function VideoOne(props) {
         setDesc(responseData.desc);
         setVid(`http://localhost:3000/${responseData.ruta.replace(/\\/g, '/')}`);
         setDate(responseData.fAlta);
-        setCanal(responseData.user.nombre)
+        setCanal(responseData.user.nombre);
+        setCanalId(responseData.userId);
       } else {
         console.log("No se encontró el video");
       }
@@ -67,6 +73,59 @@ function VideoOne(props) {
       console.error('Error fetching comentarios:', error);
     }
   };
+
+  const getSuscripcion = async () => {
+    try {
+      const user = parseInt(localStorage.getItem('userId')); 
+      if (!user) {
+        alert("No has iniciado sesión");
+        return;
+      }
+
+      const res = await fetch(`http://localhost:3000/user/subscription?usuarioId=${user}&canalId=${canalId}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }); 
+
+      if (res.ok) {
+        const data = await res.json();
+        if(data.res == 'Esta suscrito') {
+          setEstaSuscrito(true);
+          setBotonSuscribirse("Suscrito");
+        } else {
+          setEstaSuscrito(false);
+          setBotonSuscribirse("Suscribirse");
+        }
+        console.log(data.res);
+      } else {
+        console.log('No se encontraron sus suscripciones');
+      }
+    } catch (error) {
+      console.error('Error obteniendo suscripcion:', error);
+    }
+  }
+
+  const getTotalSuscriptores = async () => {
+    try {
+      const res = await fetch(`http://localhost:3000/user/subscribers/${canalId}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }); 
+
+      if (res.ok) {
+        const data = await res.json();
+        setTotalsus(data._count.suscriptores);
+      } else {
+        console.log('No se encontro el total de suscriptores');
+      }
+    } catch (error) {
+      console.error('Error obteniendo suscriptores:', error);
+    }
+  }
 
   // Agregar comentario
   
@@ -113,18 +172,77 @@ function VideoOne(props) {
     }
   };
   
+  //Suscribirse o Cancelar suscripcion
 
+  const handleSubscribe = async () => {
 
+    const userId = localStorage.getItem('userId'); 
+    if (!userId) {
+      alert("No has iniciado sesión");
+      return;
+    }
 
-  //FUNCION TEMPORAL DE SUBSCRIPCION
-  const handleSubscribe = () => {
-    alert("Ahorita no hace nada");
+    const suscripcionData = {
+      usuarioId: parseInt(userId),
+      canalId: canalId
+    };
+
+    if(userId != canalId) {
+      if(!estaSuscrito) {
+        try {
+          const res = await fetch("http://localhost:3000/user/subscribe", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(suscripcionData),
+          });
+      
+          if (res.ok) {
+            alert("Se ha suscrito a este canal");
+          } else {
+            console.log("Error al suscribirse");
+          }
+        } catch (error) {
+          console.error("Error al suscribirse:", error);
+        }
+      } else {
+        let confirmation = confirm("¿Desea cancelar su suscripcion?");
+        if(confirmation) {
+          try {
+            const res = await fetch("http://localhost:3000/user/unsubscribe", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(suscripcionData),
+            });
+        
+            if (res.ok) {
+              alert("Se ha cancelado su suscripcion");
+            } else {
+              console.log("Error al cancelar suscripcion");
+            }
+          } catch (error) {
+            console.error("Error al cancelar suscripcion:", error);
+          }
+        }
+      }
+    } else {
+      alert("No puede suscribirse a su propio canal :(");
+    }
+    //Actualizar el estado de la suscripcion
+    getSuscripcion();
+    getTotalSuscriptores();
+
   };
 
   useEffect(() => {
     videoHandle();
     getComentarios();
-  }, [id]);
+    getSuscripcion();
+    getTotalSuscriptores();
+  }, [id, canalId]);
 
   const handleError = () => {
     setVid('./video2.mp4'); // Subir un video por defecto (distinto)
@@ -136,9 +254,9 @@ function VideoOne(props) {
             <video src={`${vid}`} width="100%"  height="auto" controls onError={handleError}></video> {/* Entramos desde public localhost/video*/}
             <h1 className="video-title">{tit}</h1>
             <div className="video-header">
-              <h2 className="channel-title">Subido por: {canal}</h2>
+              <h2 className="channel-title">Subido por: {canal} <span>- {totalsus} Suscriptores</span></h2>
               <button className="subscribe-button" onClick={handleSubscribe} > {/* key={comentario.id} Entramos desde public localhost/video*/}
-                Suscribirse
+                {botonSuscribirse}
               </button>
             </div>
             <div className="video-desc ">

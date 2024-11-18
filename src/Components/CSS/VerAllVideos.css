@@ -100,6 +100,10 @@
     text-align: left;
   }
 
+  .channel-title span{
+    color: crimson;
+  }
+
   .video-desc {
     display: flex;
     flex-direction: column;

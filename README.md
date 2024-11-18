@@ -44,6 +44,9 @@ Nos falta:
     - El nuevo CSS de VerAllVideos tambien lo use para modificar el formato del Titulo, Fecha y Descripcion
     - Agreque un boton de Subscripcion que todavia no hace nada
 
+18/11/24 - 3:40pm - Andrea: 
+-Funcionalidad de suscribirse a un canal y ver el total de suscriptores de un canal, tambien se puede canccelar la suscripcion
+
 
 
 # -- Descripcion del proyecto: -- 
