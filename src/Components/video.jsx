@@ -127,6 +127,50 @@ function VideoOne(props) {
     }
   }
 
+  //Mostrar playlist en select
+
+  const [playlists, setPlaylists] = useState([]); // Estado para almacenar las playlists
+  const [selectedPlaylist, setSelectedPlaylist] = useState("");
+ 
+
+  // Obtener playlist
+      const getPlaylist = async () => {
+
+        const userIdP =  localStorage.getItem("userId");
+
+        try {
+          const res = await fetch(`http://localhost:3000/playlist/user/${userIdP}`, { 
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+    
+          if (res.ok) {
+
+            const data = await res.json(); // Convertir la respuesta a JSON
+            console.log("Respuesta completa:", data); // Verifica toda la respuesta
+
+            setPlaylists(data.data); // Guardar playlists en el estado
+            
+
+          } else {
+            console.error('Error al obtener playlist de user:', res.statusText);
+          }
+
+        } catch (error) {
+          console.error('Error en la solicitud:', error);
+        } finally {
+          // setLoading(false); Indica que la carga ha terminado
+        }
+      };
+
+  // Select cambia
+      const handleSelectChange = (event) => {
+        setSelectedPlaylist(event.target.value); // Actualizar selección
+        console.log("Playlist seleccionada:", event.target.value);
+      };
+
   // Agregar comentario
   
   const addComent = async () => {
@@ -242,6 +286,7 @@ function VideoOne(props) {
     getComentarios();
     getSuscripcion();
     getTotalSuscriptores();
+    getPlaylist();
   }, [id, canalId]);
 
   const handleError = () => {
@@ -252,17 +297,50 @@ function VideoOne(props) {
     <div className='videoVista'> 
       <div className="video-container">         
             <video src={`${vid}`} width="100%"  height="auto" controls onError={handleError}></video> {/* Entramos desde public localhost/video*/}
+
+
+
             <h1 className="video-title">{tit}</h1>
-            <div className="video-header">
-              <h2 className="channel-title">Subido por: {canal} <span>- {totalsus} Suscriptores</span></h2>
-              <button className="subscribe-button" onClick={handleSubscribe} > {/* key={comentario.id} Entramos desde public localhost/video*/}
-                {botonSuscribirse}
-              </button>
+
+            <div className='row'>
+              <div className='col'>
+                <div className="video-header">
+                <h2 className="channel-title">Subido por: {canal} <span>- {totalsus} Suscriptores</span></h2>
+                <button className="subscribe-button" onClick={handleSubscribe} > {/* key={comentario.id} Entramos desde public localhost/video*/}
+                  {botonSuscribirse}
+                </button>
+              </div>
+              <div className="video-desc ">
+                <h4>Fecha: {date}</h4>
+                <p>{desc}</p>
+              </div>
+              </div>
+
+              <div className='col'>
+
+        <h2 htmlFor="playlistSelect">Agregar a una playlist:</h2>
+      <select
+        id="playlistSelect"
+        value={selectedPlaylist} // Valor actual del select
+        onChange={handleSelectChange} // Manejar cambios
+        className='form-select'
+      >
+            <option value="" disabled>Selecciona una playlist</option> 
+            {playlists.map((playlist) => (
+            <option key={playlist.id} value={playlist.id}>
+                {playlist.nombre}
+            </option>
+            ))} 
+      </select>
+
+
+              </div>
+
             </div>
-            <div className="video-desc ">
-              <h4>Fecha: {date}</h4>
-              <p>{desc}</p>
-            </div>
+
+            
+
+      
       </div>
       
 {/* DE AQUI PARA ABAJO SON COMENTARIOS*/}
