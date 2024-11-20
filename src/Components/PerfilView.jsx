@@ -53,7 +53,7 @@ function PerfilView(props) {
         };
 
 
-         // Agregar comentario
+         // Agregar playlist
   
     const addPlaylistHandle = async () => {
       if (!playlist && !playDef ) {
@@ -91,6 +91,7 @@ function PerfilView(props) {
     
         if (res.ok) {
           console.log(`Playlist ${playlist} creada`);
+          alert("Playlist creada");
     
           setplaylist(""); 
           setPlayDef(""); 

@@ -171,6 +171,43 @@ function VideoOne(props) {
         console.log("Playlist seleccionada:", event.target.value);
       };
 
+  // Agregar video a playlist
+  const AddtoPlaylist = async () => {
+    if (!selectedPlaylist) {
+      alert("Por favor seleccione una playlist");
+      return;
+    }
+
+    const contentData = {
+      playlistId: parseInt(selectedPlaylist),
+      videoId: parseInt(id),
+    };
+
+    try {
+      const res = await fetch("http://localhost:3000/playlist/content", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(contentData),
+      });
+  
+      if (res.ok) {
+        const response = await res.json();
+  
+        if (response.res == 'Este video ya fue agregado') {
+          alert("Este video ya fue agregado anteriormente");
+        } else {
+          alert("Video agregado a la playlist seleccionada con exito");
+        }
+      } else {
+        console.log("Error al agregar video a playlist");
+      }
+    } catch (error) {
+      console.error("Error al agregar video a playlist:", error);
+    }
+  }
+
   // Agregar comentario
   
   const addComent = async () => {
@@ -319,19 +356,20 @@ function VideoOne(props) {
               <div className='col'>
 
         <h2 htmlFor="playlistSelect">Agregar a una playlist:</h2>
-      <select
-        id="playlistSelect"
-        value={selectedPlaylist} // Valor actual del select
-        onChange={handleSelectChange} // Manejar cambios
-        className='form-select'
-      >
-            <option value="" disabled>Selecciona una playlist</option> 
-            {playlists.map((playlist) => (
-            <option key={playlist.id} value={playlist.id}>
-                {playlist.nombre}
-            </option>
-            ))} 
-      </select>
+        <select
+          id="playlistSelect"
+          value={selectedPlaylist} // Valor actual del select
+          onChange={handleSelectChange} // Manejar cambios
+          className='form-select'
+        >
+              <option value="" disabled>Selecciona una playlist</option> 
+              {playlists.map((playlist) => (
+              <option key={playlist.id} value={playlist.id}>
+                  {playlist.nombre}
+              </option>
+              ))} 
+        </select>
+        <button className='btnAgregarPl' onClick={AddtoPlaylist}>Agregar</button>
 
 
               </div>

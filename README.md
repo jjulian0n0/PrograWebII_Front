@@ -4,7 +4,7 @@ Proyecto de Progra Web 2, parte de Front
     Creado por:
     - Jesús Julián Cerda Sandoval
     - Ricardo Ponce de León Herrera
-    -
+    - Andrea Berenice Reyna Gutiérrez
     -
 
 # Team: cosas por hacer 
@@ -13,6 +13,11 @@ Tenemos:
     Registro de usuario
     Ver información de usuario
     Subir video con Multer // Julian
+    Suscribirse / Des-suscribirse
+    Hacer comentarios
+    Mostrar comentarios
+    Hacer playlist y agregar videos a ella
+    Ver playlist
 
 
 Nos falta:
@@ -21,11 +26,6 @@ Nos falta:
     *
     
     Buscar videos // Ricardo?
-    Hacer comentarios
-    Mostrar comentarios
-    Playlist // Andrea
-
-?Suscripciones si nos da el tiempo
 
 
 # Bitacora equipo:
@@ -46,6 +46,9 @@ Nos falta:
 
 18/11/24 - 3:40pm - Andrea: 
 -Funcionalidad de suscribirse a un canal y ver el total de suscriptores de un canal, tambien se puede canccelar la suscripcion
+
+20/11/24 - 3:11pm - Andrea:
+-Ya se pueden agregar videos a una playlist, si ya estaban agregados, no hace nada solo avisa al usuario
 
 
 
