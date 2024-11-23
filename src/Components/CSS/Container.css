@@ -440,3 +440,12 @@
   .form-select option {
     font-weight: 400;
   }
+
+  /*        Siempre dejar espacio para el SIDEBAR       */
+
+  .no-sidebar {
+    margin-left: 25vh; 
+    padding: 20px; 
+    box-sizing: border-box; 
+    transition: all 0.3s ease; 
+  }

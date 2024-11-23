@@ -117,47 +117,48 @@ function PerfilView(props) {
 
 
   
-   return ( <>
-   <div className='card'>
-
-      <div className='row'>
-
-      <div className='col'>
-      <img src={`${foto}`}  alt="Foto de perfil" style={{ width: '200px', height: 'auto' } } onError={handleError}  />
-
-
-      </div>
-      <div className='col'>
-        <h1>{user}</h1>
-      <h1>{email}</h1>
-      </div>
-
-      </div>
-
-      
-      {/* <h1>{foto}</h1> */}
-
-
-    </div>
-
+   return (
+   <div className='no-sidebar'>
     <div className='card'>
 
-      <div className='row'>
-        <div className = 'col'>
+        <div className='row'>
 
-          <h2>Crear Playlist</h2><br></br>
-          <InputField setText={setplaylist} label="Playlist"></InputField><br></br>
-          <InputField setText={setPlayDef} label="Definicion de la playlist"></InputField>
+        <div className='col'>
+        <img src={`${foto}`}  alt="Foto de perfil" style={{ width: '200px', height: 'auto' } } onError={handleError}  />
+
+
+        </div>
+        <div className='col'>
+          <h1>{user}</h1>
+        <h1>{email}</h1>
         </div>
 
-        <div className = 'col'>
-          <button onClick={addPlaylistHandle}>Crear playlist</button>
+        </div>
+
+        
+        {/* <h1>{foto}</h1> */}
+
+
+      </div>
+
+      <div className='card'>
+
+        <div className='row'>
+          <div className = 'col'>
+
+            <h2>Crear Playlist</h2><br></br>
+            <InputField setText={setplaylist} label="Playlist"></InputField><br></br>
+            <InputField setText={setPlayDef} label="Definicion de la playlist"></InputField>
+          </div>
+
+          <div className = 'col'>
+            <button onClick={addPlaylistHandle}>Crear playlist</button>
+          </div>
         </div>
       </div>
+    
+    
     </div>
-    
-    
-    </>
   )
     
 }

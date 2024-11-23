@@ -13,7 +13,7 @@ import InputField from './FieldComponents/InputField';
 }
 
 
-function PlaylistView(props) {
+function MisSuscritosView(props) {
    
     const userId =  localStorage.getItem("userId"); //parseInt("userId", 10);
 
@@ -84,69 +84,89 @@ function PlaylistView(props) {
           setLoading(false); // Termina la carga
         }
       };
+
+
+
+      //Ver los videos solo de la gente a la que estoy suscrito
+      const getUserSubscribedVideos = async () => {
+        setLoading(true);
+
+        try {
+          const res = await fetch(`http://localhost:3000/user/videos-sus/${userId}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+      
+          if (res.ok) {
+            const data = await res.json(); // Convertir la respuesta a JSON
+      
+            // Actualizar el estado con los datos obtenidos
+            setPlaylistVideos(data); 
+          } else {
+            console.error('Error al obtener los videos de las suscripciones:', res.statusText);
+            setPlaylistVideos([]); // Si falla, asegurarse de limpiar el estado
+          }
+        } catch (error) {
+          console.error('Error en la solicitud:', error);
+          setPlaylistVideos([]);
+        } finally {
+          setLoading(false); // Termina la carga
+        }
+      };
  
 
 
         useEffect(() => {
-            getPlaylist(); // useEffect llama
+
+
+            getUserSubscribedVideos();
+            //getPlaylist();  useEffect llama
         }, []);
 
 
         
-        const handleSelectChange = (event) => {
-            const playlistId = event.target.value;
-            setSelectedPlaylist(playlistId); // Actualizar selección
-            getPlaylistContent(playlistId); // Actualizar Contenido de Playlist
-            console.log("Playlist seleccionada:", playlistId);
-          };
+
 
   
    return ( 
-    <div className='no-sidebar'>
-      <div className='card'>{/* <h1>{foto}</h1> 
-        <img src={`${foto}`}  alt="Foto de perfil" style={{ width: '200px', height: 'auto' } } onError={handleError}  />*/}
-        <div className='card'>
-        <h2 htmlFor="playlistSelect">Selecciona una playlist:</h2>
-        <select
-          id="playlistSelect"
-          value={selectedPlaylist} // Valor actual del select
-          onChange={handleSelectChange} // Manejar cambios
-          className="form-select"
-        >
-              <option value="" disabled>Selecciona una playlist</option> 
-              {playlists.map((playlist) => (
-              <option key={playlist.id} value={playlist.id}>
-                  {playlist.nombre}
-              </option>
-              ))} 
-        </select>
-        </div>
-        {/* LISTADO DE VIDEOS*/}
-        <div className="ver-all-videos">
-          {loading ? (
-            <div>Cargando videos...</div>
-          ) : playlistVideos.length > 0 ? (
-            playlistVideos.map((video) => (
-              <Link
-                to={`/videoOne/${video.id}`}
-                key={video.id}
-                className="ver-all-videos-link"
-              >
-                <div className="ver-all-videos-card">
-                <VideoThumbnail videoSrc={`http://localhost:3000/${video.ruta.replace(/\\/g, '/')}`} />
-                <h1>{video.nombre}</h1>
-                  <h2>{video.desc}</h2>
-                  <p>Fecha de alta: {video.fAlta}</p>
-                </div>
-              </Link>
-            ))
-          ) : (
-            <p>No hay videos en esta playlist.</p>
-          )}
-        </div>
+    
+
+<div className='no-sidebar'>
+  <div className='card'>{/* <h1>{foto}</h1> 
+      <img src={`${foto}`}  alt="Foto de perfil" style={{ width: '200px', height: 'auto' } } onError={handleError}  />*/}
+      <div className='card'>
+      <h2 htmlFor="playlistSelect">Mis suscripciones</h2>
+
+
+      </div>
+      {/* LISTADO DE VIDEOS*/}
+      <div className="ver-all-videos">
+        {loading ? (
+          <div>Cargando videos...</div>
+        ) : playlistVideos.length > 0 ? (
+          playlistVideos.map((video) => (
+            <Link
+              to={`/videoOne/${video.id}`}
+              key={video.id}
+              className="ver-all-videos-link"
+            >
+              <div className="ver-all-videos-card">
+              <VideoThumbnail videoSrc={`http://localhost:3000/${video.ruta.replace(/\\/g, '/')}`} />
+              <h1>{video.nombre}</h1>
+                <h2>{video.desc}</h2>
+                <p>Fecha de alta: {video.fAlta}</p>
+              </div>
+            </Link>
+          ))
+        ) : (
+          <p>No hay videos en esta playlist.</p>
+        )}
       </div>
     </div>
+</div>
   );
 }
 
-export default PlaylistView
+export default MisSuscritosView

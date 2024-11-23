@@ -81,8 +81,8 @@ function VideoForm(props) {
 
   
    return ( 
-    <>
-    <div className='card'>
+    <div className='no-sidebar'>
+      <div className='card'>
       <h1>Subir video</h1>
 
     
@@ -106,7 +106,7 @@ function VideoForm(props) {
         </div>
 
       </div>
-      </>
+    </div>
   )
     
 }

@@ -10,6 +10,7 @@ import VideoForm from './Components/SubirVideoForm'
 import VideoAll from './Components/AllVideosView'
 import VideoOne from './Components/video'
 import Playlist from './Components/PlaylistView'
+import Suscritos from './Components/MisSuscritosView'
 
 import './Components/CSS/App.css'
 import './Components/CSS/Container.css' 
@@ -63,6 +64,7 @@ function App() {
                  <Route path="/videoForm" element={<VideoForm />} />
                  <Route path="/principal" element={<VideoAll />} />
                  <Route path="/Playlist" element={<Playlist />} />
+                 <Route path="/Suscritos" element={<Suscritos />} />
                  <Route path="/videoOne/:id" element={<VideoOne />} />
                 </Routes>
               </>

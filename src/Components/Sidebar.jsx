@@ -28,6 +28,9 @@ function Sidebar (props){
         <Link to="/Playlist">Mis playlist</Link>
         </li>
         <li>
+        <Link to="/Suscritos">Mis suscripciones</Link>
+        </li>
+        <li>
         <AComponent setInt = {props.setLoginInt} numero = {0} texto = "Cerrar Sesion"/>
 
         </li>

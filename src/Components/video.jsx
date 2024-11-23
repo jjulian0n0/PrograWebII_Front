@@ -117,6 +117,7 @@ function VideoOne(props) {
       }); 
 
       if (res.ok) {
+        console.log('Si se encontro el total de suscriptores');
         const data = await res.json();
         setTotalsus(data._count.suscriptores);
       } else {
@@ -321,8 +322,8 @@ function VideoOne(props) {
   useEffect(() => {
     videoHandle();
     getComentarios();
-    getSuscripcion();
     getTotalSuscriptores();
+    getSuscripcion();
     getPlaylist();
   }, [id, canalId]);
 
