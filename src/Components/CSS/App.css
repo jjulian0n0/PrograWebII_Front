@@ -52,3 +52,40 @@
 }
 
 
+/* Clases rapidas para perfil*/
+
+.h1-perfil {
+  margin: 0;          
+  padding: 0;         
+  font-size: 2rem;    
+  font-weight: bold;  
+}
+
+.h2-perfil {
+  text-align: center;          
+  padding-left: 25%;            
+  padding-right: 25%;           
+  margin: 0;                    
+  font-size: 1rem;              
+  font-weight: normal;          
+  opacity: 0.7;                 
+}
+
+.col-pf{
+  padding-left: 5px;
+}
+
+.hr-zero{
+  opacity: 0;
+}
+
+.hr-cool{
+  opacity: 0.5;
+  height: 75%;
+}
+
+.col-centro {
+  display: flex;                 
+  justify-content: center;       
+  align-items: center;           
+}

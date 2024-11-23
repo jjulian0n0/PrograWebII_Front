@@ -97,7 +97,7 @@ function VideoForm(props) {
             <div className='col'>
 
               <InputField setText={setTitle} label="Titulo"/>
-              <InputField setText={setDesc} label="Descripcion"/>
+              <InputField setText={setDesc} label="Descripcion"/> <br></br>
 
               <button onClick={addVideoHandler}>Subir video</button>
     

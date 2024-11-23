@@ -25,10 +25,13 @@ function Sidebar (props){
         <Link to="/principal">Todos los videos</Link>
         </li>
         <li>
+        <Link to="/SearchVideo">Buscar video</Link>
+        </li>
+        <li>
         <Link to="/Playlist">Mis playlist</Link>
         </li>
         <li>
-        <Link to="/Suscritos">Mis suscripciones</Link>
+        <Link to="/Suscritos">Mis suscripciones</Link> 
         </li>
         <li>
         <AComponent setInt = {props.setLoginInt} numero = {0} texto = "Cerrar Sesion"/>

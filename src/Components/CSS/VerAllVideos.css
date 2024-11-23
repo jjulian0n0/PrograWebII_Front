@@ -10,6 +10,18 @@
 
     transition: all 0.3s ease; 
   }
+
+  .ver-all-videos-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+    gap: 20px; 
+    padding: 20px;
+
+    max-width: 1200px;
+    box-sizing: border-box;
+
+    transition: all 0.3s ease; 
+  }
   
   .ver-all-videos-card {
     display: flex;
@@ -107,8 +119,6 @@
   }
 
   .video-desc {
-    display: flex;
-    flex-direction: column;
     background-color: #ffffff;
     border-radius: 8px;
     padding: 10px 20px;
@@ -117,9 +127,17 @@
     margin-top: 10px;
     text-align: left;
   }
+
+  .playlist-col{
+    text-align: center;    /* Centra el texto de los elementos hijos */
+    padding: 20px;
+  }
+  .desc-col{
+    padding: 2%;
+  }
   
   .subscribe-button {
-    background-color: #0052cc;
+    background-color: #0e4392;
     color: white;
     font-size: 16px;
     padding: 10px 20px;

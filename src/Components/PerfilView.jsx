@@ -128,9 +128,11 @@ function PerfilView(props) {
 
 
         </div>
-        <div className='col'>
-          <h1>{user}</h1>
-        <h1>{email}</h1>
+        <div className='col col-pf'>
+          <h2 className='h2-perfil'>Nombre de usuario:</h2>
+            <h1 className='h1-perfil'>{user}</h1>
+            <h2 className='h2-perfil'>Correo:</h2>
+          <h1 className='h1-perfil'>{email}</h1>
         </div>
 
         </div>
@@ -140,20 +142,21 @@ function PerfilView(props) {
 
 
       </div>
+      
+      <hr className='hr-zero'></hr>
 
-      <div className='card'>
+      <div className='card h-75'>
 
         <div className='row'>
           <div className = 'col'>
 
-            <h2>Crear Playlist</h2><br></br>
-            <InputField setText={setplaylist} label="Playlist"></InputField><br></br>
-            <InputField setText={setPlayDef} label="Definicion de la playlist"></InputField>
-          </div>
-
-          <div className = 'col'>
+            <h2>Crear Playlist</h2>
+            <InputField setText={setplaylist} label="Nombre de Playlist"></InputField><br></br>
+            <InputField setText={setPlayDef} label="Definicion de la playlist"></InputField><br></br>
             <button onClick={addPlaylistHandle}>Crear playlist</button>
           </div>
+
+          
         </div>
       </div>
     

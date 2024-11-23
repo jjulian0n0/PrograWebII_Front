@@ -11,6 +11,7 @@ import VideoAll from './Components/AllVideosView'
 import VideoOne from './Components/video'
 import Playlist from './Components/PlaylistView'
 import Suscritos from './Components/MisSuscritosView'
+import SearchVideo from './Components/SearchVideo'
 
 import './Components/CSS/App.css'
 import './Components/CSS/Container.css' 
@@ -66,6 +67,7 @@ function App() {
                  <Route path="/Playlist" element={<Playlist />} />
                  <Route path="/Suscritos" element={<Suscritos />} />
                  <Route path="/videoOne/:id" element={<VideoOne />} />
+                 <Route path="/SearchVideo" element={<SearchVideo />} />
                 </Routes>
               </>
             );

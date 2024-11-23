@@ -5,6 +5,7 @@ import VideoThumbnail from './FieldComponents/videoThumbnail';
 
 import BtnCom from './FieldComponents/buttonCom'
 import InputField from './FieldComponents/InputField';
+import FechaComponent from './Functions/FormatoFechaP';
 
 
 
@@ -136,13 +137,12 @@ function MisSuscritosView(props) {
 <div className='no-sidebar'>
   <div className='card'>{/* <h1>{foto}</h1> 
       <img src={`${foto}`}  alt="Foto de perfil" style={{ width: '200px', height: 'auto' } } onError={handleError}  />*/}
-      <div className='card'>
+      
       <h2 htmlFor="playlistSelect">Mis suscripciones</h2>
 
-
-      </div>
+<hr className='hr-cool'/>
       {/* LISTADO DE VIDEOS*/}
-      <div className="ver-all-videos">
+      <div className="ver-all-videos-2">
         {loading ? (
           <div>Cargando videos...</div>
         ) : playlistVideos.length > 0 ? (
@@ -156,7 +156,7 @@ function MisSuscritosView(props) {
               <VideoThumbnail videoSrc={`http://localhost:3000/${video.ruta.replace(/\\/g, '/')}`} />
               <h1>{video.nombre}</h1>
                 <h2>{video.desc}</h2>
-                <p>Fecha de alta: {video.fAlta}</p>
+                <FechaComponent isoDate={video.fAlta} />
               </div>
             </Link>
           ))

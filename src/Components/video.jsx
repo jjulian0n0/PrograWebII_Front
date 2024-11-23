@@ -6,7 +6,7 @@ import './CSS/VideoComentarios.css'
 import './CSS/VerAllVideos.css';
 
 
-import InputField from './FieldComponents/InputField';
+import FechaComponent from './Functions/FormatoFecha';
 import VideoField from './FieldComponents/videoField'
 
 
@@ -343,41 +343,47 @@ function VideoOne(props) {
             <div className='row'>
               <div className='col'>
                 <div className="video-header">
-                <h2 className="channel-title">Subido por: {canal} <span>- {totalsus} Suscriptores</span></h2>
-                <button className="subscribe-button" onClick={handleSubscribe} > {/* key={comentario.id} Entramos desde public localhost/video*/}
-                  {botonSuscribirse}
-                </button>
-              </div>
-              <div className="video-desc ">
-                <h4>Fecha: {date}</h4>
-                <p>{desc}</p>
-              </div>
+                  <h2 className="channel-title">Subido por: {canal} <span>- {totalsus} Suscriptores</span></h2>
+                  <button className="subscribe-button" onClick={handleSubscribe} > {/* key={comentario.id} Entramos desde public localhost/video*/}
+                    {botonSuscribirse}
+                  </button>
+                </div>
+
+              
               </div>
 
-              <div className='col'>
-
-        <h2 htmlFor="playlistSelect">Agregar a una playlist:</h2>
-        <select
-          id="playlistSelect"
-          value={selectedPlaylist} // Valor actual del select
-          onChange={handleSelectChange} // Manejar cambios
-          className='form-select'
-        >
-              <option value="" disabled>Selecciona una playlist</option> 
-              {playlists.map((playlist) => (
-              <option key={playlist.id} value={playlist.id}>
-                  {playlist.nombre}
-              </option>
-              ))} 
-        </select>
-        <button className='btnAgregarPl' onClick={AddtoPlaylist}>Agregar</button>
 
 
-              </div>
 
             </div>
 
-            
+            <div className="row video-desc ">
+            <div className='col desc-col'>
+                <FechaComponent isoDate={date} />
+                <h2>{desc}</h2>
+                </div>
+                
+                <div className='col-5 playlist-col'>
+
+                <h2 htmlFor="playlistSelect">Agregar a una playlist:</h2>
+                <select
+                  id="playlistSelect"
+                  value={selectedPlaylist} // Valor actual del select
+                  onChange={handleSelectChange} // Manejar cambios
+                  className='form-select'
+                >
+                      <option value="" disabled>Selecciona una playlist</option> 
+                      {playlists.map((playlist) => (
+                      <option key={playlist.id} value={playlist.id}>
+                          {playlist.nombre}
+                      </option>
+                      ))} 
+                </select>
+                <hr className='hr-zero'/>
+                <button onClick={AddtoPlaylist}>Agregar a playlist</button>
+                </div>
+
+            </div>
 
       
       </div>
@@ -389,8 +395,7 @@ function VideoOne(props) {
 
           <div className='row'>
 
-              <div className='col-2 colFoto'>
-                  <img src="foto3.png" className='img-fluid pfPx-Comentario' ></img>
+              <div className='col-1 colFoto'>
               </div>
               <div className='col comentCol'>
                 <input type='text' className='coment' placeholder="Agrega tu comentario" onChange={(e) => {

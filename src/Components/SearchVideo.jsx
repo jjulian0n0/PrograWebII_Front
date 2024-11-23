@@ -1,19 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './CSS/VerAllVideos.css';
+import './CSS/VideoComentarios.css';
 
 // Importamos el componente VideoThumbnail desde FieldComponents
 import VideoThumbnail from './FieldComponents/videoThumbnail'; 
 import FechaComponent from './Functions/FormatoFechaP';
+import InputField from './FieldComponents/InputField';
 
 
-function VerAllVideos() {
+function BuscarVideos() {
   const [videos, setVideos] = useState([]); // Estado para almacenar videos
   const [loading, setLoading] = useState(true); // Estado para manejar la carga
 
+  const [searchWord, setWord] = useState(''); // Palabra a buscar
+
   const videosHandle = async () => {
+
+    if(searchWord !== ''){
+
     try {
-      const res = await fetch('http://localhost:3000/video/busqueda?name=', {
+      const res = await fetch(`http://localhost:3000/video/busqueda?name=${searchWord}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -41,18 +48,35 @@ function VerAllVideos() {
     } finally {
       setLoading(false); // Indica que la carga ha terminado
     }
-  };
-
-  useEffect(() => {
-    videosHandle(); // Llama a la función para obtener los videos al montar el componente
-  }, []);
-
-  if (loading) {
-    return <div>Cargando videos...</div>; // Mensaje de carga
   }
 
-  return (
+  };
+
+ // useEffect(() => {
+  //  videosHandle(); // Llama a la función para obtener los videos al montar el componente
+  //}, []);
+
+  return (<>
+  <div className='card'>{/* 
+    <InputField setText={setWord} label="Buscar"></InputField>
+    <button onClick={videosHandle}>Buscar</button>*/}
+    <h1 className='h1-perfil'>Buscar un video</h1>
+
+    <div className='col comentCol'>
+                <input type='text' className='coment' placeholder="Video a buscar..." onChange={(e) => {
+
+              setWord(e.target.value);
+  
+              }}></input>
+
+                <button className='btnComentar' onClick={videosHandle}>Buscar video</button>
+              </div>
+    </div>
+
     <div className='ver-all-videos'>
+
+    
+
       {videos.length > 0 ? (
         videos.map((video) => (
           <Link to={`/videoOne/${video.id}`} key={video.id} className="ver-all-videos-link">
@@ -67,9 +91,9 @@ function VerAllVideos() {
       ) : (
         <p>No se encontraron videos.</p> // Mensaje si no hay videos
       )}
-    </div>
+    </div></>
   );
 }
 
-export default VerAllVideos;
+export default BuscarVideos;
 
